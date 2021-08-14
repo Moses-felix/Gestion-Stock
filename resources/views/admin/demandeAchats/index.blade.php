@@ -78,50 +78,98 @@
                             </thead>
                             <tbody>
                                 @foreach($demandeAchats as $key => $demandeAchat)
-                                    <tr data-entry-id="{{ $demandeAchat->id }}">
-                                        <td>
+                                @if(Auth::user()->roles() && $demandeAchat->etat = 0)
+                                <tr data-entry-id="{{ $demandeAchat->id }}">
+                                    <td>
 
-                                        </td>
-                                        <td>
-                                            {{ $demandeAchat->id ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $demandeAchat->users->name ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $demandeAchat->objet ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ App\Models\DemandeAchat::URGENCE_RADIO[$demandeAchat->urgence] ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $demandeAchat->etat ?? '' }}
-                                        </td>
-                                        
-                                        <td>
-                                            @can('demande_achat_show')
-                                                <a class="btn btn-xs btn-primary" href="{{ route('admin.demande-achats.show', $demandeAchat->id) }}">
-                                                    {{ trans('global.view') }}
-                                                </a>
-                                            @endcan
+                                    </td>
+                                    <td>
+                                        {{ $demandeAchat->id ?? '' }}
+                                    </td>
+                                    <td>
+                                        {{ $demandeAchat->users->name ?? '' }}
+                                    </td>
+                                    <td>
+                                        {{ $demandeAchat->objet ?? '' }}
+                                    </td>
+                                    <td>
+                                        {{ App\Models\DemandeAchat::URGENCE_RADIO[$demandeAchat->urgence] ?? '' }}
+                                    </td>
+                                    <td>
+                                        {{ $demandeAchat->etat ?? '' }}
+                                    </td>
+                                    
+                                    <td>
+                                        @can('demande_achat_show')
+                                            <a class="btn btn-xs btn-primary" href="{{ route('admin.demande-achats.show', $demandeAchat->id) }}">
+                                                {{ trans('global.view') }}
+                                            </a>
+                                        @endcan
 
-                                            @can('demande_achat_edit')
-                                                <a class="btn btn-xs btn-info" href="{{ route('admin.demande-achats.edit', $demandeAchat->id) }}">
-                                                    {{ trans('global.edit') }}
-                                                </a>
-                                            @endcan
+                                        @can('demande_achat_edit')
+                                            <a class="btn btn-xs btn-info" href="{{ route('admin.demande-achats.edit', $demandeAchat->id) }}">
+                                                {{ trans('global.edit') }}
+                                            </a>
+                                        @endcan
 
-                                            @can('demande_achat_delete')
-                                                <form action="{{ route('admin.demande-achats.destroy', $demandeAchat->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                                    <input type="hidden" name="_method" value="DELETE">
-                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                    <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                                                </form>
-                                            @endcan
+                                        @can('demande_achat_delete')
+                                            <form action="{{ route('admin.demande-achats.destroy', $demandeAchat->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
+                                            </form>
+                                        @endcan
 
-                                        </td>
+                                    </td>
 
-                                    </tr>
+                                </tr>
+                                @elseif ($demandeAchat->users_id == Auth::user()->id)
+                                <tr data-entry-id="{{ $demandeAchat->id }}">
+                                    <td>
+
+                                    </td>
+                                    <td>
+                                        {{ $demandeAchat->id ?? '' }}
+                                    </td>
+                                    <td>
+                                        {{ $demandeAchat->users->name ?? '' }}
+                                    </td>
+                                    <td>
+                                        {{ $demandeAchat->objet ?? '' }}
+                                    </td>
+                                    <td>
+                                        {{ App\Models\DemandeAchat::URGENCE_RADIO[$demandeAchat->urgence] ?? '' }}
+                                    </td>
+                                    <td>
+                                        {{ $demandeAchat->etat ?? '' }}
+                                    </td>
+                                    
+                                    <td>
+                                        @can('demande_achat_show')
+                                            <a class="btn btn-xs btn-primary" href="{{ route('admin.demande-achats.show', $demandeAchat->id) }}">
+                                                {{ trans('global.view') }}
+                                            </a>
+                                        @endcan
+
+                                        @can('demande_achat_edit')
+                                            <a class="btn btn-xs btn-info" href="{{ route('admin.demande-achats.edit', $demandeAchat->id) }}">
+                                                {{ trans('global.edit') }}
+                                            </a>
+                                        @endcan
+
+                                        @can('demande_achat_delete')
+                                            <form action="{{ route('admin.demande-achats.destroy', $demandeAchat->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
+                                            </form>
+                                        @endcan
+
+                                    </td>
+
+                                </tr>
+                                @endif
+                                    
                                 @endforeach
                             </tbody>
                         </table>

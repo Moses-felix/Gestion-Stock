@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\LigneDemande;
 use App\Models\ValidationDemande;
 use Gate;
+use auth;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -28,7 +29,7 @@ class ValidationDemandeController extends Controller
         
         $users = user::get();
 
-        return view('admin.validationDemandes.index', compact('validationDemandes', 'demandes'));
+        return view('admin.validationDemandes.index', compact('validationDemandes', 'demandes', 'ligneDemandes'));
     }
 
     public function create()
@@ -55,6 +56,10 @@ class ValidationDemandeController extends Controller
         $ligneDemandes = lignedemande::get();
 
         $Demandes = demande::get();
+
+        if(Btn-success){
+            
+        }
 
         return redirect()->route('admin.validation-demandes.index');
     }

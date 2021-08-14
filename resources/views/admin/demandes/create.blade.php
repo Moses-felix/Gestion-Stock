@@ -9,20 +9,13 @@
                     {{ trans('global.create') }} {{ trans('cruds.demande.title_singular') }}
                 </div>
                 <div class="panel-body">
+                    <div class="form-group">
+                        <a class="btn btn-default" href="{{ route('admin.demandes.index') }}">
+                            {{ trans('global.back_to_list') }}
+                        </a>
+                    </div>
                     <form method="POST" action="{{ route("admin.demandes.store") }}" enctype="multipart/form-data">
                         @csrf
-                        <div class="form-group {{ $errors->has('users') ? 'has-error' : '' }}">
-                            <label class="required" for="users_id">{{ trans('cruds.demande.fields.users') }}</label>
-                            <select class="form-control select2" name="users_id" id="users_id" required>
-                                @foreach($users as $id => $entry)
-                                    <option value="{{ $id }}" {{ old('users_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
-                                @endforeach
-                            </select>
-                            @if($errors->has('users'))
-                                <span class="help-block" role="alert">{{ $errors->first('users') }}</span>
-                            @endif
-                            <span class="help-block">{{ trans('cruds.demande.fields.users_helper') }}</span>
-                        </div>
                         <div class="form-group {{ $errors->has('objet_demande') ? 'has-error' : '' }}">
                             <label for="objet_demande">{{ trans('cruds.demande.fields.objet_demande') }}</label>
                             <input class="form-control" type="text" name="objet_demande" id="objet_demande" value="{{ old('objet_demande', '') }}">
@@ -48,8 +41,10 @@
                                             <tr>
                                                 <td>
                                                     <select class="form-control" name="product[]" id="product">
+                                                        <option value="">Sélectionner</option>
                                                         @foreach($products as $product)
-                                                            <option value="{{ $product->id }}" disabled='true'>{{ $product->name }}</option>
+                                                            
+                                                            <option value="{{ $product->id }}">{{ $product->name }}</option>
                                                         @endforeach
                                                     </select>
                                                 </td>
@@ -62,7 +57,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-danger" type="submit">
+                            <button class="btn btn-success" type="submit">
                                 {{ trans('global.save') }}
                             </button>
                         </div>
@@ -87,6 +82,7 @@
         var tr = '<tr>'+
                     '<td>'+
                         '<select class="form-control" name="product[]" id="product">'+
+                        '<option value="">Sélectionner</option>'+
                             '@foreach($products as $product)'+
                                 '<option value="{{ $product->id }}">{{ $product->name }}</option>'+
                             '@endforeach'+

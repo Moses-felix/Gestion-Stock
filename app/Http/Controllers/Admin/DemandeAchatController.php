@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\Product;
 use App\Models\ligneDemande;
 use Gate;
+use Auth;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -42,8 +43,8 @@ class DemandeAchatController extends Controller
 
     public function store(StoreDemandeAchatRequest $request)
     {
-        $demandeAchat = DemandeAchat::create($request->all());
-
+        $demandeAchat = DemandeAchat::create(array_merge($request->all(),['users_id' => Auth::user()->id]));
+        //dd($request->product);
         for($i = 0 ; $i < count($request->product) ; $i++){
             $ligne_demmande = new LigneDemande();
             $ligne_demmande->product_id = $request->product[$i];

@@ -20,17 +20,8 @@
                         @csrf
                         <div class="form-group {{ $errors->has('users') ? 'has-error' : '' }}">
                             <label class="required" for="users_id">{{ trans('cruds.demande.fields.users') }}</label>
-                            <select class="form-control select2" name="users_id" id="users_id">
-                                @foreach($users as $id => $entry)
-                                    <option value="{{ $id }}" {{ (old('users_id') ? old('users_id') : $demande->users->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
-                                @endforeach
-                            </select>
-                            @if($errors->has('users'))
-                                <span class="help-block" role="alert">{{ $errors->first('users') }}</span>
-                            @endif
-                            <span class="help-block">{{ trans('cruds.demande.fields.users_helper') }}</span>
-                            {{-- //@if($product->id == $ligne->product->id) selected @endif --}}
-                            {{-- <input type="text" value="{{ $demande->users->name }}" class="form-control" name="users_id" id="users_id" readonly> --}}
+                                                        
+                            <input type="text" value="{{ $demande->users->name }} {{ $demande->users->prenom }}" class="form-control" name="users_id" id="users_id" readonly>
                         </div>
                         <div class="form-group {{ $errors->has('objet_demande') ? 'has-error' : '' }}">
                             <label for="objet_demande">{{ trans('cruds.demande.fields.objet_demande') }}</label>
@@ -48,6 +39,7 @@
                                             <tr>
                                                 <th>Article</th>
                                                 <th>Quantité</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -64,6 +56,11 @@
                                                     </td>
                                                     <td>
                                                         <input type="number" class="form-control" value="{{ $ligne->quantite }}" id="quantite" name="quantite[]">
+                                                    </td>
+                                                    <td align="center">
+                                                        <button type="" class="text-dark" value=''>
+                                                            <i class='fa fa-trash'></i>
+                                                        </button>
                                                     </td>
                                                 </tr>
                                             @endforeach

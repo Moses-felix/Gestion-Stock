@@ -1,5 +1,9 @@
 <?php
 
+
+Route::get('/getdemande', 'DonneeController@getdemande')->name('demande.get');
+
+
 Route::redirect('/', '/login');
 Route::get('/home', function () {
     if (session('status')) {

@@ -450,13 +450,32 @@
                     @endcan
                 @endif
                 <li>
-                    <a href="#" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="fas fa-fw fa-sign-out-alt">
 
                         </i>
                         {{ trans('global.logout') }}
                     </a>
                 </li>
+
+                <!-- Logout Modal-->
+                {{-- <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Etes vous sûre de vous déconnecter ?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">Selectionner "Déconnexion" si vous êtes prêt à quitter la session.</div>
+                        <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
+                        <a class="btn btn-primary" href="#">Déconnexion</a>
+                        </div>
+                    </div>
+                    </div>
+                </div> --}}
         </ul>
     </section>
 </aside>

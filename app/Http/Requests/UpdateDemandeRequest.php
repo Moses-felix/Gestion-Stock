@@ -17,10 +17,10 @@ class UpdateDemandeRequest extends FormRequest
     public function rules()
     {
         return [
-            'users_id' => [
-                'required',
-                'integer',
-            ],
+            // 'users_id' => [
+            //     'required',
+            //     'integer',
+            // ],
             'objet_demande' => [
                 'string',
                 'nullable',

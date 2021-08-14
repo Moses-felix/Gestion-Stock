@@ -11,6 +11,7 @@ use App\Models\Product;
 use App\Models\User;
 use App\Models\ligneDemande;
 use Gate;
+use Auth;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -42,7 +43,7 @@ class DemandeController extends Controller
 
     public function store(StoreDemandeRequest $request)
     {
-        $demande = Demande::create($request->all());
+        $demande = Demande::create(array_merge($request->all(),['users_id' => Auth::user()->id]));
 
         for($i = 0 ; $i < count($request->product) ; $i++){
             // $res = "pdt : ".$request->product[$i]
@@ -54,7 +55,7 @@ class DemandeController extends Controller
 
         }
         
-        Session::put('success', "La demande est faite avec succés...");
+        // Session::put('success', "La demande est faite avec succés...");
 
         return redirect()->route('admin.demandes.index');
     }

@@ -1,6 +1,8 @@
 @extends('layouts.admin')
 @section('content')
+
 <div class="content">
+    {{-- @if(Auth::user()->roles()->first()->title=='Magasinier') --}}
     @can('validation_demande_create')
         <div style="margin-bottom: 10px;" class="row">
             <div class="col-lg-12">
@@ -10,6 +12,7 @@
             </div>
         </div>
     @endcan
+    {{-- @endif --}}
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
@@ -46,6 +49,7 @@
                             </thead>
                             <tbody>
                                 @foreach($validationDemandes as $key => $validationDemande)
+                                @if (Auth::user()->roles()->first()->title=='Magasinier' || ($validationDemandes->users_id == Auth::user()->id) && $validationDemande->etat = 1)
                                     <tr data-entry-id="{{ $validationDemande->id }}">
                                         <td>
 
@@ -90,6 +94,7 @@
                                         </td>
 
                                     </tr>
+                                @endif
                                 @endforeach
                             </tbody>
                         </table>

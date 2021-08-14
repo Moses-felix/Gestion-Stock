@@ -17,10 +17,10 @@ class StoreDemandeAchatRequest extends FormRequest
     public function rules()
     {
         return [
-            'users_id' => [
-                'required',
-                'integer',
-            ],
+            // 'users_id' => [
+            //     'required',
+            //     'integer',
+            // ],
             'objet' => [
                 'string',
                 'required',

@@ -43,15 +43,6 @@
                                         {{ trans('cruds.product.fields.rangement') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.product.fields.created_at') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.product.fields.updated_at') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.product.fields.deleted_at') }}
-                                    </th>
-                                    <th>
                                         &nbsp;
                                     </th>
                                 </tr>
@@ -87,15 +78,6 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                                    </td>
-                                    <td>
-                                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                                    </td>
-                                    <td>
-                                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                                    </td>
-                                    <td>
                                     </td>
                                 </tr>
                             </thead>
@@ -123,15 +105,7 @@
                                         <td>
                                             {{ $product->rangement->nom_rangement ?? '' }}
                                         </td>
-                                        <td>
-                                            {{ $product->created_at ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $product->updated_at ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $product->deleted_at ?? '' }}
-                                        </td>
+                                       
                                         <td>
                                             @can('product_show')
                                                 <a class="btn btn-xs btn-primary" href="{{ route('admin.products.show', $product->id) }}">

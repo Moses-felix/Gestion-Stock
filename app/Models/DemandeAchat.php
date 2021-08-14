@@ -49,7 +49,7 @@ class DemandeAchat extends Model
 
     public function lignedemandes()
     {
-        return $this->hasMany(LigneDemande::class, 'demande_id');
+        return $this->hasMany(LigneDemande::class, 'demande_achat_id');
     }
     
     protected function serializeDate(DateTimeInterface $date)

@@ -11,7 +11,7 @@
                 <div class="panel-body">
                     <form method="POST" action="{{ route("admin.demande-achats.store") }}" enctype="multipart/form-data">
                         @csrf
-                        <div class="form-group {{ $errors->has('users') ? 'has-error' : '' }}">
+                        {{-- <div class="form-group {{ $errors->has('users') ? 'has-error' : '' }}">
                             <label class="required" for="users_id">{{ trans('cruds.demandeAchat.fields.users') }}</label>
                             <select class="form-control select2" name="users_id" id="users_id" required>
                                 @foreach($users as $id => $entry)
@@ -22,7 +22,7 @@
                                 <span class="help-block" role="alert">{{ $errors->first('users') }}</span>
                             @endif
                             <span class="help-block">{{ trans('cruds.demandeAchat.fields.users_helper') }}</span>
-                        </div>
+                        </div> --}}
                         <div class="form-group {{ $errors->has('objet') ? 'has-error' : '' }}">
                             <label class="required" for="objet">{{ trans('cruds.demandeAchat.fields.objet') }}</label>
                             <input class="form-control" type="text" name="objet" id="objet" value="{{ old('objet', '') }}" required>
@@ -60,7 +60,9 @@
                                         <tbody>
                                             <tr>
                                                 <td>
+                                                    
                                                     <select class="form-control" name="product[]" id="product">
+                                                        <option value="">Sélectionner</option>
                                                         @foreach($products as $product)
                                                             <option value="{{ $product->id }}">{{ $product->name }}</option>
                                                         @endforeach
@@ -111,6 +113,7 @@
         var tr = '<tr>'+
                     '<td>'+
                         '<select class="form-control" name="product[]" id="product">'+
+                        '<option value="">Sélectionner</option>'+
                             '@foreach($products as $product)'+
                                 '<option value="{{ $product->id }}">{{ $product->name }}</option>'+
                             '@endforeach'+

@@ -1,5 +1,19 @@
 @extends('layouts.app')
 @section('content')
+{{-- <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img class="d-block w-100" src="image/nioto2.jpg" alt="First slide">
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="image/nioto3.jpg" alt="Second slide">
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="image/nioto1.jpg" alt="Third slide">
+      </div>
+    </div>
+</div> --}}
+
 <div class="login-box">
     <div class="login-logo">
         <a href="{{ route('admin.home') }}">
@@ -57,7 +71,7 @@
                 {{ trans('global.forgot_password') }}
             </a><br>
         @endif
-
+        
 
     </div>
 </div>
